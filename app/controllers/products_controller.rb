@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
     @products = Product.all
@@ -8,9 +10,7 @@ class ProductsController < ApplicationController
     @related_products = Product.where.not(id: @product.id).order(created_at: :desc).limit(4)
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 end
