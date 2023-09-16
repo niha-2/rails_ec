@@ -31,7 +31,7 @@ product3 = Product.new(
   description: 'なにわ男子のクリアファイルです。',
   price: 500
 )
-product5.image.attach(io: File.open(Rails.root.join('app/assets/images/naniwa_clearfilefolder.jpg')),
+product3.image.attach(io: File.open(Rails.root.join('app/assets/images/naniwa_clearfilefolder.jpg')),
                                   filename: 'naniwa_clearfilefolder.jpg')
 product3.save!
 
@@ -51,7 +51,4 @@ product5 = Product.new(
 )
 product5.image.attach(io: File.open(Rails.root.join('app/assets/images/sixtones_light.jpg')),
                                   filename: 'sixtones_light.jpg')
-
-product5.image.attach(io: open('https://rails-ec-niha-2.s3.ap-northeast-1.amazonaws.com/sixtones_light.jpg'),
-                      filename: 'sixtones_light.jpg')
 product5.save!
