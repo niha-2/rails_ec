@@ -7,7 +7,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to admin_products_path(@product), notice: "商品「#{@product.name}」を登録しました"
+      redirect_to admin_products_path(), notice: "商品「#{@product.name}」を登録しました"
     else
       render :new
     end
