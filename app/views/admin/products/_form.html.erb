@@ -13,7 +13,7 @@
   </div>
   <div class="form-group mb-2 fs-5 fw-bolder">
       <%= p.label :image, '商品画像：' %>
-      <%= p.file_field :image, multiple: true, direct_upload: true, class: 'form-control' %>
+      <%= p.file_field :image, direct_upload: true, class: 'form-control' %>
   </div>
     <%= p.submit '登録する', class: 'btn btn-primary' %>
 <% end %>

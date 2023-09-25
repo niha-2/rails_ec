@@ -22,9 +22,13 @@
         </div>
       </div>
     </header>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
     <!-- Section-->
     <section class="py-5">
       <div class="container px-4 px-lg-5 mt-5">
+        <%= link_to '商品新規登録', new_admin_product_path, class: "btn btn-outline-dark mt-auto" %>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           <%= render partial: 'product', collection: @products %>
         </div>
