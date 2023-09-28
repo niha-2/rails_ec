@@ -13,7 +13,10 @@
     </div>
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-      <div class="text-center"><%= link_to '削除', product, class: "btn btn-outline-dark mt-auto", method: :delete %></div>
+      <div class="text-center">
+        <%= link_to '編集', edit_admin_product_path(product), class: "btn btn-primary mt-auto" %>
+        <%= link_to '削除', [:admin, product], data: { turbo_method: :delete }, class: "btn btn-outline-dark mt-auto", data: { confirm: "商品「#{product.name}」を削除します。よろしいですか？"} %>
+      </div>
     </div>
   </div>
 </div>

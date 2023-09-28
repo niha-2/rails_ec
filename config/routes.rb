@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :products
   end
+
   resources :products, only: %i[index show new create edit update destroy]
   resources :tasks
 

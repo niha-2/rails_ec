@@ -16,6 +16,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    product = Product.find_by(id: params[:id])
+    product.update(product_params)
+    redirect_to admin_products_path, notice: "商品「#{product.name}」を更新しました"
   end
 
   def index
@@ -24,7 +31,9 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    product = Product.find_by(id: params[:id])
+    product.destroy
+    redirect_to admin_products_path, notice: "商品「#{product.name}」を削除しました", status: :see_other
   end
 
   private
