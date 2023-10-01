@@ -11,7 +11,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_products_path(), notice: "商品「#{@product.name}」を登録しました"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -20,9 +20,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find_by(id: params[:id])
-    product.update(product_params)
-    redirect_to admin_products_path, notice: "商品「#{product.name}」を更新しました"
+    @product = Product.find_by(id: params[:id])
+
+    if @product.update(product_params)
+      redirect_to admin_products_path, notice: "商品「#{product.name}」を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def index

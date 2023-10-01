@@ -1,3 +1,11 @@
+  <% if @product.errors.present? %>
+    <% @product.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
 <%= form_with model: [:admin, @product] do |p| %>
   <div class="form-group mb-2 fs-5 fw-bolder">
     <%= p.label :name, '商品名：' %>
