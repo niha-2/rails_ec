@@ -23,7 +23,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
 
     if @product.update(product_params)
-      redirect_to admin_products_path, notice: "商品「#{product.name}」を更新しました"
+      redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,7 +31,6 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    binding.pry
   end
 
   def destroy
