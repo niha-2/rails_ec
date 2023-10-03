@@ -14,7 +14,7 @@ product1 = Product.new(
   price: 4200
 )
 product1.image.attach(io: File.open(Rails.root.join('app/assets/images/Agroup_steaker.jfif')),
-                                  filename: 'Agroup_steaker.jfif')
+                      filename: 'Agroup_steaker.jfif')
 product1.save!
 
 product2 = Product.new(
@@ -23,7 +23,7 @@ product2 = Product.new(
   price: 800
 )
 product2.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.png')),
-                                  filename: 'no_image.png')
+                      filename: 'no_image.png')
 product2.save!
 
 product3 = Product.new(
@@ -32,7 +32,7 @@ product3 = Product.new(
   price: 500
 )
 product3.image.attach(io: File.open(Rails.root.join('app/assets/images/naniwa_clearfilefolder.jpg')),
-                                  filename: 'naniwa_clearfilefolder.jpg')
+                      filename: 'naniwa_clearfilefolder.jpg')
 product3.save!
 
 product4 = Product.new(
@@ -41,7 +41,7 @@ product4 = Product.new(
   price: 1000
 )
 product4.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.png')),
-                                  filename: 'no_image.png')
+                      filename: 'no_image.png')
 product4.save!
 
 product5 = Product.new(
@@ -50,5 +50,5 @@ product5 = Product.new(
   price: 1000
 )
 product5.image.attach(io: File.open(Rails.root.join('app/assets/images/sixtones_light.jpg')),
-                                  filename: 'sixtones_light.jpg')
+                      filename: 'sixtones_light.jpg')
 product5.save!

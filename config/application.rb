@@ -19,8 +19,8 @@ module Myapp
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    config.time_zone='Tokyo'
-    config.active_record.default_timezone= :local
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.test_framework :rspec,
@@ -32,6 +32,6 @@ module Myapp
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
 
-    config.i18n.load_path+=Dir[Rails.root.join('config', 'locals', '**', '*.yml').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config/locals/**/*.yml').to_s]
   end
 end

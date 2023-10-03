@@ -30,10 +30,10 @@
       <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5">
           <div class="col">
-          <%= image_tag @product.image, size: '300x300', class: "card-img-top" %>
+            <%= image_tag @product.image, size: '300x300', class: "card-img-top" %>
           </div>
           <div class="col">
-          <%= render partial: 'form', locals: { product: @product } %>
+            <%= render partial: 'form', locals: { product: @product } %>
           </div>
         </div>
       </div>
