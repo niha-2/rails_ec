@@ -3,6 +3,7 @@
 module Admin
   class ProductsController < ApplicationController
     before_action :basic_auth
+    before_action :set_product, only: %i[edit update destroy]
 
     def new
       @product = Product.new
@@ -19,12 +20,9 @@ module Admin
     end
 
     def edit
-      @product = Product.find(params[:id])
     end
 
     def update
-      @product = Product.find_by(id: params[:id])
-
       if @product.update(product_params)
         redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
       else
@@ -37,9 +35,8 @@ module Admin
     end
 
     def destroy
-      product = Product.find_by(id: params[:id])
-      product.destroy
-      redirect_to admin_products_path, notice: "商品「#{product.name}」を削除しました", status: :see_other
+      @product.destroy
+      redirect_to admin_products_path, notice: "商品「#{@product.name}」を削除しました", status: :see_other
     end
 
     private
@@ -52,6 +49,10 @@ module Admin
 
     def product_params
       params.require(:product).permit(:name, :price, :description, :image)
+    end
+
+    def set_product
+      @product = Product.find(params[:id])
     end
   end
 end
