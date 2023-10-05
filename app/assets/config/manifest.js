@@ -2,3 +2,4 @@
 //= link_tree ../builds
 //= link styles.css
 //= link controllers/application.js
+//= link controllers/hello_controller.js
