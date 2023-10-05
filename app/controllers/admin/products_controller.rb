@@ -19,8 +19,7 @@ module Admin
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @product.update(product_params)
