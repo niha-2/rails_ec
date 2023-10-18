@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     member do
       post 'add_product_to_cart'
       post 'add_some_products_to_cart_product'
-      delete 'delete_product_from_cart'
     end
   end
 

@@ -5,5 +5,5 @@
   </div>
   <span class="text-muted"><%= product.price %>円</span>
   <span class="badge bg-dark text-white ms-1 rounded-pill"><%= cart_product.quantity %></span>
-  <span class="text-muted"><%= link_to '削除', delete_product_from_cart_cart_product_path(id: cart_product.id), class: "btn btn-outline-dark mt-auto", data: { turbo_confirm: "商品「#{product.name}」を削除します。よろしいですか？",turbo_method: :delete } %></span>
+  <span class="text-muted"><%= link_to '削除', cart_product, class: "btn btn-outline-dark mt-auto", data: { turbo_confirm: "商品「#{product.name}」を削除します。よろしいですか？",turbo_method: :delete } %></span>
 </li>
