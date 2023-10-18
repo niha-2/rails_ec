@@ -45,8 +45,7 @@ class CartProductsController < ApplicationController
   end
 
   def destroy
-    set_cart_product()
-    # @cart_product = CartProduct.find(params[:id])
+    set_cart_product
     @delete_product = Product.find(@cart_product.product_id)
     @cart_product.destroy
     redirect_to cart_products_path, notice: "カートから商品「#{@delete_product.name}」を削除しました"
