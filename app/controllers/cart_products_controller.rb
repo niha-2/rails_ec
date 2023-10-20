@@ -4,43 +4,39 @@ class CartProductsController < ApplicationController
   before_action :set_cart
 
   def index
-    @cart_products = CartProduct.where(cart_id: @current_cart.id)
+    @cart_products = @current_cart.cart_products
     @products = Product.all
   end
 
-  def add_product_to_cart
+
+  def add
     @product_id = params[:id]
     @cart_product = CartProduct.find_by(product_id: @product_id, cart_id: @current_cart.id)
 
-    if @cart_product
-      @cart_product.quantity += 1
-    else
-      @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id, quantity: 1)
-    end
+    if params[:product_quantity]
+      if @cart_product
+        @cart_product.quantity += params[:product_quantity].to_i
+      else
+        @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id, quantity: params[:product_quantity].to_i)
+      end
 
-    if @cart_product.save
-      redirect_to products_path, notice: 'カートに商品を追加しました'
+      if @cart_product.save
+        redirect_to product_path(@product_id), notice: 'カートに商品を追加しました'
+      else
+        redirect_to product_path(@product_id), notice: 'カートに商品を追加できませんでした'
+      end
     else
-      redirect_to products_path, notice: 'カートに商品を追加できませんでした'
-    end
-  end
+      if @cart_product
+        @cart_product.quantity += 1
+      else
+        @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id, quantity: 1)
+      end
 
-  def add_some_products_to_cart_product
-    @product_quantity = params[:product_quantity]
-    @product = Product.find(params[:id])
-    @cart_product = CartProduct.find_by(product_id: @product.id, cart_id: @current_cart.id)
-
-    if @cart_product
-      @cart_product.quantity += @product_quantity.to_i
-    else
-      @cart_product = CartProduct.new(product_id: @product.id, cart_id: @current_cart.id,
-                                      quantity: @product_quantity.to_i)
-    end
-
-    if @cart_product.save
-      redirect_to product_path(@product.id), notice: 'カートに商品を追加しました'
-    else
-      redirect_to product_path(@product.id), notice: 'カートに商品を追加できませんでした'
+      if @cart_product.save
+        redirect_to products_path, notice: 'カートに商品を追加しました'
+      else
+        redirect_to products_path, notice: 'カートに商品を追加できませんでした'
+      end
     end
   end
 

@@ -31,7 +31,7 @@
             </div>
             <p class="lead"><%= @product.description %></p>
             <div class="d-flex">
-              <%= form_with url: add_some_products_to_cart_product_cart_product_path(id: @product.id), method: :post do |f| %>
+              <%= form_with url: add_cart_product_path(id: @product.id), method: :post do |f| %>
                 <%= f.number_field :product_quantity, min: 1, class: 'form-control text-center me-3', size: '1x2' %>
                 <button class="btn btn-outline-dark flex-shrink-0">
                   <i class="bi-cart-fill me-1"></i>
