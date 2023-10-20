@@ -8,35 +8,28 @@ class CartProductsController < ApplicationController
     @products = Product.all
   end
 
-
   def add
     @product_id = params[:id]
     @cart_product = CartProduct.find_by(product_id: @product_id, cart_id: @current_cart.id)
 
-    if params[:product_quantity]
-      if @cart_product
-        @cart_product.quantity += params[:product_quantity].to_i
-      else
-        @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id, quantity: params[:product_quantity].to_i)
-      end
+    @quantity = params[:product_quantity] ? params[:product_quantity].to_i : 1
+    if @cart_product
+      @cart_product.quantity += @quantity
+    else
+      @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id,
+                                      quantity: @quantity)
+    end
 
-      if @cart_product.save
+    if @cart_product.save
+      if params[:product_quantity]
         redirect_to product_path(@product_id), notice: 'カートに商品を追加しました'
       else
-        redirect_to product_path(@product_id), notice: 'カートに商品を追加できませんでした'
-      end
-    else
-      if @cart_product
-        @cart_product.quantity += 1
-      else
-        @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id, quantity: 1)
-      end
-
-      if @cart_product.save
         redirect_to products_path, notice: 'カートに商品を追加しました'
-      else
-        redirect_to products_path, notice: 'カートに商品を追加できませんでした'
       end
+    elsif params[:product_quantity]
+      redirect_to product_path(@product_id), notice: 'カートに商品を追加できませんでした'
+    else
+      redirect_to products_path, notice: 'カートに商品を追加できませんでした'
     end
   end
 
