@@ -9,27 +9,14 @@ class CartProductsController < ApplicationController
   end
 
   def add
-    @product_id = params[:id]
-    @cart_product = CartProduct.find_by(product_id: @product_id, cart_id: @current_cart.id)
-
     @quantity = params[:product_quantity] ? params[:product_quantity].to_i : 1
-    if @cart_product
-      @cart_product.quantity += @quantity
-    else
-      @cart_product = CartProduct.new(product_id: @product_id, cart_id: @current_cart.id,
-                                      quantity: @quantity)
-    end
+    @cart_product = @current_cart.add_or_initialaize_product(params[:id], @quantity)
 
+    @redirect_path = params[:product_quantity] ? product_path(@product_id) : products_path
     if @cart_product.save
-      if params[:product_quantity]
-        redirect_to product_path(@product_id), notice: 'カートに商品を追加しました'
-      else
-        redirect_to products_path, notice: 'カートに商品を追加しました'
-      end
-    elsif params[:product_quantity]
-      redirect_to product_path(@product_id), notice: 'カートに商品を追加できませんでした'
+      redirect_to @redirect_path, notice: 'カートに商品を追加しました'
     else
-      redirect_to products_path, notice: 'カートに商品を追加できませんでした'
+      redirect_to @redirect_path, notice: 'カートに商品を追加できませんでした'
     end
   end
 
