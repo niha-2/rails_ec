@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_07_030556) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_200401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030556) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "billing_infos", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "user_name", null: false
+    t.string "email", null: false
+    t.string "address", null: false
+    t.string "address2"
+    t.string "country", null: false
+    t.string "state", null: false
+    t.string "zip", null: false
+    t.boolean "same_address_flag", null: false
+    t.boolean "save_info_flag", null: false
+    t.string "payment_method", null: false
+    t.string "name_on_card", null: false
+    t.string "credit_card_number", null: false
+    t.string "credit_card_expiration", null: false
+    t.string "credit_card_cvv", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cart_products", force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "product_id", null: false
@@ -65,6 +86,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030556) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "purchase_details", force: :cascade do |t|
+    t.bigint "billing_info_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["billing_info_id"], name: "index_purchase_details_on_billing_info_id"
+    t.index ["product_id"], name: "index_purchase_details_on_product_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -77,4 +108,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030556) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
+  add_foreign_key "purchase_details", "billing_infos"
+  add_foreign_key "purchase_details", "products"
 end

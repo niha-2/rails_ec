@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :products
+    resources :purchase_details, only: %i[index, show]
   end
 
   resources :products, only: %i[index show new create edit update destroy]
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       post 'add'
     end
   end
+  resources :billing_infos, only: %i[new]
 
   root to: 'products#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

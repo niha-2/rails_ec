@@ -9,12 +9,14 @@
   </head>
   <body class="bg-light">
     <div class="container">
+      <%# footer %>
       <div class="py-5 text-center">
         <h2>Checkout form</h2>
         <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
       </div>
       <%= render 'shared/info_messages' %>
       <div class="row">
+        <%# cart %>
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
@@ -34,9 +36,11 @@
             </div>
           </form>
         </div>
+        <%# billing %>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate="">
+          <%= render partial: 'billing_form', locals: {billing: @billing} %>
+          <!--<form class="needs-validation" novalidate="">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -128,14 +132,14 @@
                 <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
                 <label class="custom-control-label" for="credit">Credit card</label>
               </div>
-              <div class="custom-control custom-radio">
+              <%# <div class="custom-control custom-radio">
                 <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
                 <label class="custom-control-label" for="debit">Debit card</label>
               </div>
               <div class="custom-control custom-radio">
                 <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
                 <label class="custom-control-label" for="paypal">PayPal</label>
-              </div>
+              </div> %>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
@@ -172,8 +176,8 @@
             </div>
             <hr class="mb-4">
             <%= link_to '商品一覧へ', products_path, class: "btn btn-outline-dark  btn-lg mt-auto" %>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-          </form>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">購入する</button>
+          </form> -->
         </div>
       </div>
       <footer class="my-5 pt-5 text-muted text-center text-small">
