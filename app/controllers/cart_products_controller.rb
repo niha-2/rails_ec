@@ -2,15 +2,17 @@
 
 class CartProductsController < ApplicationController
   before_action :set_cart
+  before_action :set_cart_product, only: %i[destroy]
+  before_action :set_current_cart_products, only: %i[index]
 
   def index
-    @cart_products = @current_cart.cart_products
     @products = Product.all
   end
 
   def add
+    @product_id = params[:id]
     @quantity = params[:product_quantity] ? params[:product_quantity].to_i : 1
-    @cart_product = @current_cart.add_or_initialaize_product(params[:id], @quantity)
+    @cart_product = @current_cart.add_or_initialaize_product(@product_id, @quantity)
 
     @redirect_path = params[:product_quantity] ? product_path(@product_id) : products_path
     if @cart_product.save
@@ -21,7 +23,6 @@ class CartProductsController < ApplicationController
   end
 
   def destroy
-    set_cart_product
     @delete_product = Product.find(@cart_product.product_id)
     @cart_product.destroy
     redirect_to cart_products_path, notice: "カートから商品「#{@delete_product.name}」を削除しました"
@@ -33,5 +34,9 @@ class CartProductsController < ApplicationController
 
   def set_cart_product
     @cart_product = CartProduct.find(params[:id])
+  end
+
+  def set_current_cart_products
+    @cart_products = @current_cart.cart_products
   end
 end
