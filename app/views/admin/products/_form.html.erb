@@ -1,4 +1,4 @@
-  <% if @product.errors.present? %>
+<% if @product.errors.present? %>
   <% @product.errors.full_messages.each do |message| %>
     <div class="alert alert-danger" role="alert">
       <%= message %>

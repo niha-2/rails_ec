@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'add'
     end
   end
-  resources :billing_infos, only: %i[new]
+  resources :billing_infos, only: %i[create]
 
   root to: 'products#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
