@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_26_151932) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_07_184154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,8 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_151932) do
     t.string "country", null: false
     t.string "state", null: false
     t.string "zip", null: false
-    t.boolean "same_address_flag", null: false
-    t.boolean "save_info_flag", null: false
+    t.boolean "same_address_flag"
+    t.boolean "save_info_flag"
     t.string "payment_method", null: false
     t.string "name_on_card", null: false
     t.string "credit_card_number", null: false
