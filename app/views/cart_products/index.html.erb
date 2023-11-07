@@ -39,7 +39,7 @@
         <%# billing %>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <%= render partial: 'billing_form', locals: {billing_info: @billing_info} %>
+          <%= render partial: 'billing_form', locals: {billing_info: @billing_info}, data: { turbo: false } %>
         </div>
       </div>
       <footer class="my-5 pt-5 text-muted text-center text-small">

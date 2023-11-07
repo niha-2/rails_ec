@@ -3,6 +3,7 @@ class BillingInfosController < ApplicationController
 
   def create
     @billing_info = BillingInfo.new(billing_info_params)
+
     if @billing_info.save
       @current_cart.cart_products.each do |cart_product|
         @purchase_detail = PurchaseDetail.new(billing_info_id: @billing_info.id, product_id: cart_product.product_id, quantity: cart_product.quantity)
@@ -12,7 +13,12 @@ class BillingInfosController < ApplicationController
       Cart.find(@current_cart.id).destroy
       redirect_to root_path, notice: '購入ありがとうございます'
     else
-      redirect_to cart_products_path, notice: '購入に失敗しました'
+      p @billing_info.errors.full_messages
+      # set_current_cart_products
+      # @products = Product.all
+      # render 'cart_products/index', notice: '購入に失敗しました'
+      session[:billing_info] = billing_info_params
+      redirect_to cart_products_path, status: :unprocessable_entity, notice: '購入に失敗しました'
     end
   end
 
@@ -20,5 +26,9 @@ class BillingInfosController < ApplicationController
 
   def billing_info_params
     params.require(:billing_info).permit(:first_name, :last_name, :user_name, :email, :address, :address2, :country, :state, :zip, :same_address_flag, :save_info_flag, :payment_method, :name_on_card, :credit_card_number, :credit_card_expiration, :credit_card_cvv)
+  end
+
+  def set_current_cart_products
+    @cart_products = @current_cart.cart_products
   end
 end
