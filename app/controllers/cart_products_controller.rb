@@ -7,11 +7,7 @@ class CartProductsController < ApplicationController
 
   def index
     @products = Product.all
-    if session[:billing_info]
-      @billing_info = BillingInfo.new(session[:billing_info])
-    else
-      @billing_info = BillingInfo.new
-    end
+      @billing_info = BillingInfo.new()
   end
 
   def add

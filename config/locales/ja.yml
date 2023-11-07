@@ -7,6 +7,22 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      billing_info:
+        first_name: 名前
+        last_name: 苗字
+        user_name: ユーザー名
+        email: メールアドレス
+        address: 住所
+        address2: 住所2
+        country: 国
+        state: 都道府県
+        zip: 郵便番号
+        payment_method: 支払い方法
+        name_on_card: カード名義
+        credit_card_number: クレジットカード番号
+        credit_card_expiration: 有効期限
+        credit_card_cvv: セキュリティコード
   date:
     abbr_day_names:
     - 日
@@ -17,7 +33,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -43,7 +59,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
