@@ -12,6 +12,7 @@ class BillingInfosController < ApplicationController
       end
       session[:cart_id] = nil
       Cart.find(@current_cart.id).destroy
+      PurchaseNotifierMailer.send_test_email.deliver
       redirect_to root_path, notice: '購入ありがとうございます'
     else
       @products = Product.all
