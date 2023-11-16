@@ -39,15 +39,15 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :sendgrid
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    :password => ENV[SENDGRID_API_KEY], # This is the secret sendgrid API key which was issued during API key creation
-    :domain => ENV[SENDER_DOMAIN],
+    :password => ENV['SENDGRID_API_KEY'], # This is the secret sendgrid API key which was issued during API key creation
+    :domain => ENV['SENDER_DOMAIN'],
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
