@@ -33,5 +33,9 @@ module Myapp
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
 
     config.i18n.load_path += Dir[Rails.root.join('config/locals/**/*.yml').to_s]
+
+    # config.action_mailer.show_previews = true
+    # config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+
   end
 end
