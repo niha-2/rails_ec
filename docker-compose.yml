@@ -24,6 +24,7 @@ services:
       - BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD
       - LAUNCHY_DRY_RUN=true
       - BROWSER=/dev/null
+      - SENDER_ADDRESS=$SENDER_ADDRESS
     ports:
       - "3000:3000"
     depends_on:
