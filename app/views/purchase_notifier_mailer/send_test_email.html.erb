@@ -4,8 +4,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up, !</h1>
-    <p>Thanks for joining and have a great day! Now sign in and do
-awesome things!</p>
+    <p><%= @billing_info.last_name %>様<br>ご購入いただきありがとうございます！</p>
+    <h2>ご購入明細</h2>
+    <table>
+      <tr>
+        <th>商品名</th>
+        <th>価格</th>
+        <th>個数</th>
+      </tr>
+      <% @cart_products.each do |cart_product| %>
+        <tr>
+          <td><%= @products.find { |product| product.id == cart_product.product_id}.name %></td>
+          <td><%= @products.find { |product| product.id == cart_product.product_id}.price %></td>
+          <td><%= cart_product.quantity %></td>
+        </tr>
+      <% end %>
+    </table>
   </body>
 </html>
