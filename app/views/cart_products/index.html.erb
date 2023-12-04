@@ -24,7 +24,7 @@
           </h4>
           <ul class="list-group mb-3">
             <% @cart_products.each do |cart_product| %>
-              <%= render partial: 'cart_product', locals: { product: @products.find { |product| product.id == cart_product.product_id}, cart_product: cart_product } %>
+              <%= render partial: 'cart_products/cart_product', locals: { product: @products.find { |product| product.id == cart_product.product_id}, cart_product: cart_product } %>
             <% end %>
           </ul>
           <form class="card p-2">

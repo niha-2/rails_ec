@@ -15,7 +15,7 @@ class BillingInfosController < ApplicationController
       @products = Product.all
       # 購入明細メール送信
       if @billing_info.email.present?
-        PurchaseNotifierMailer.send_test_email(@billing_info, @cart_products, @products).deliver
+        PurchaseNotifierMailer.send_purchase_details_email(@billing_info, @cart_products, @products).deliver
       end
       redirect_to root_path, notice: '購入ありがとうございます'
     else

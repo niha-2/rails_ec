@@ -7,7 +7,7 @@ class CartProductsController < ApplicationController
 
   def index
     @products = Product.all
-      @billing_info = BillingInfo.new()
+    @billing_info = BillingInfo.new()
   end
 
   def add

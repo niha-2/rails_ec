@@ -30,7 +30,11 @@
       <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5">
           <div class="col">
-            <%= image_tag @product.image, size: '300x300', class: "card-img-top" %>
+            <% if @product.image.attached? %>
+              <%= image_tag @product.image, size: '300x300', class: "card-img-top" %>
+            <% else %>
+              <%= image_tag 'no_image.png', class: "card-img-top", alt: "no-image" %>
+            <% end %>
           </div>
           <div class="col">
             <%= render partial: 'form', locals: { product: @product } %>

@@ -1,7 +1,7 @@
 class PurchaseNotifierMailer < ApplicationMailer
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
-  def send_test_email(billing_info, cart_products, products)
+  def send_purchase_details_email(billing_info, cart_products, products)
     @billing_info = billing_info
     @cart_products = cart_products
     @products = products

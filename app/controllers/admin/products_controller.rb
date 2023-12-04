@@ -10,7 +10,7 @@ module Admin
     end
 
     def create
-      @product = Product.new(product_params)
+      @product = Product.new(product_params_create)
 
       if @product.save
         redirect_to admin_products_path, notice: "商品「#{@product.name}」を登録しました"
@@ -22,19 +22,30 @@ module Admin
     def edit; end
 
     def update
-      if @product.update(product_params)
-        redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
-      else
-        render :edit, status: :unprocessable_entity
+      @product_update = Product.new(product_params_create)
+
+      ActiveRecord::Base.transaction do
+        if @product_update.image.nil?
+          p "image is nil"
+          @product_update.image.attach(@product.image.blob)
+        end
+
+        @product.update!(deleted: true)
+        @product_update.save!
       end
+
+      redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error("Transaction failed! Error messages: #{e.record.errors.full_messages.join(', ')}")
+      render :edit, status: :unprocessable_entity
     end
 
     def index
-      @products = Product.all
+      @products = Product.where(deleted: false)
     end
 
     def destroy
-      @product.destroy
+      @product.update(deleted: true)
       redirect_to admin_products_path, notice: "商品「#{@product.name}」を削除しました", status: :see_other
     end
 
@@ -46,12 +57,13 @@ module Admin
       end
     end
 
-    def product_params
-      params.require(:product).permit(:name, :price, :description, :image)
+    def product_params_create
+      params.require(:product).permit(:name, :price, :description, :image).merge(deleted: false)
     end
 
     def set_product
       @product = Product.find(params[:id])
     end
+
   end
 end

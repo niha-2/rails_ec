@@ -1,8 +1,11 @@
 <div class="col mb-5">
   <div class="card h-100">
     <!-- Product image-->
-    <%= image_tag product.image, class: "card-img-top" %>
-    <!-- Product details-->
+    <% if product.image.attached? %>
+      <%= image_tag product.image, class: "card-img-top" %>
+    <% else %>
+      <%= image_tag 'no_image.png', class: "card-img-top", alt: "no-image" %>
+    <% end %>
     <div class="card-body p-4">
       <div class="text-center">
         <!-- Product name-->
