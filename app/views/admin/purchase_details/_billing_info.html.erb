@@ -1,0 +1,22 @@
+<div class="col mb-5">
+  <div class="card h-100">
+    <div class="card-body p-4">
+      <div class="text-center">
+        <!-- id -->
+        <h5 class="fw-bolder">#<%= billing_info.id %></h5>
+        <!-- last name-->
+        <h5 class="fw-bolder"><%= billing_info.last_name %>様</h5>
+        <!-- email-->
+        <%= billing_info.email %><br>
+        <!-- created_at-->
+        <%= billing_info.created_at.strftime("%Y年%m月%d日 %H時%M分") %><br>
+      </div>
+    </div>
+    <!-- Product actions-->
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+      <div class="text-center">
+        <%= link_to '詳細', admin_purchase_detail_path(billing_info), class: "btn btn-primary mt-auto" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,13 +2,11 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
     resources :products
-    resources :purchase_details, only: %i[index, show]
+    resources :purchase_details
   end
 
   resources :products, only: %i[index show new create edit update destroy]
-  resources :tasks
   resources :carts, only: %i[new]
   resources :cart_products
   resources :cart_products do

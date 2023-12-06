@@ -1,8 +1,14 @@
 <div class="col mb-5">
   <div class="card h-100">
     <!-- Product image-->
-    <%= link_to product do %>
-      <%= image_tag product.image, class: "card-img-top" %>
+    <% if product.image.attached? %>
+      <%= link_to product do %>
+        <%= image_tag product.image, class: "card-img-top" %>
+      <% end %>
+    <% else %>
+      <%= link_to product do %>
+        <%= image_tag 'no_image.png', class: "card-img-top", alt: "no-image" %>
+      <% end %>
     <% end %>
     <!-- Product details-->
     <div class="card-body p-4">

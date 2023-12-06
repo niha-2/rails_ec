@@ -1,2 +1,45 @@
-<h1>Admin::PurchaseDetails#show</h1>
-<p>Find me in app/views/admin/purchase_details/show.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Purchase Details Show</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <%= render partial: 'shared/navigation' %>
+    <!-- Purchase Detail section-->
+    <!-- Section-->
+    <section class="py-5">
+    <div class="container">
+      <div class="py-5 text-center">
+        <div>
+          <h2>ご購入明細 #<%= @billing_info.id %></h2>
+          <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details, products: @products}, data: {turbo: false} %>
+        </div>
+      </div>
+      <div class="container text-center">
+        <%= link_to '購入明細一覧', admin_purchase_details_path, class: "btn btn-primary mt-auto" %>
+      </div>
+    </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
