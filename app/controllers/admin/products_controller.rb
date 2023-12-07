@@ -24,18 +24,16 @@ module Admin
     def update
       @product_update = Product.new(product_params_create)
       # アップロードされる画像がない場合は、元の画像をそのまま使う
-      if !@product_update.image.attached? && @product.image.attached?
-        @product_update.image.attach(@product.image.blob)
-      end
+      @product_update.image.attach(@product.image.blob) if !@product_update.image.attached? && @product.image.attached?
 
       ActiveRecord::Base.transaction do
         @product.update!(deleted: true)
         @product_update.save!
       end
-        redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
-      rescue ActiveRecord::RecordInvalid => e
-        Rails.logger.error("Transaction failed! Error messages: #{e.record.errors.full_messages.join(', ')}")
-        render :edit, status: :unprocessable_entity
+      redirect_to admin_products_path, notice: "商品「#{@product.name}」を更新しました"
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error("Transaction failed! Error messages: #{e.record.errors.full_messages.join(', ')}")
+      render :edit, status: :unprocessable_entity
     end
 
     def index

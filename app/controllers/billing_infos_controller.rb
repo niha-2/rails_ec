@@ -16,20 +16,17 @@ class BillingInfosController < ApplicationController
         @purchase_detail.save!
       end
       Cart.find(@current_cart.id).destroy!
-
     end
-      # カートの中身を空にする
-      session[:cart_id] = nil
-      # 購入明細メール送信
-      if @billing_info.email.present?
-        PurchaseNotifierMailer.send_purchase_details_email(@billing_info, @cart_products, @products).deliver
-      end
-      redirect_to root_path, notice: '購入ありがとうございます'
-
-    rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.error("Transaction failed! Error messages: #{e.record.errors.full_messages.join(', ')}")
-      render 'cart_products/index', notice: '購入に失敗しました', status: :unprocessable_entity
-
+    # カートの中身を空にする
+    session[:cart_id] = nil
+    # 購入明細メール送信
+    if @billing_info.email.present?
+      PurchaseNotifierMailer.send_purchase_details_email(@billing_info, @cart_products, @products).deliver
+    end
+    redirect_to root_path, notice: '購入ありがとうございます'
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error("Transaction failed! Error messages: #{e.record.errors.full_messages.join(', ')}")
+    render 'cart_products/index', notice: '購入に失敗しました', status: :unprocessable_entity
   end
 
   private
