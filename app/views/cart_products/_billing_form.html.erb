@@ -1,10 +1,10 @@
 <%= form_with model: billing_info do |p| %>
   <% if billing_info.errors.present? %>
-      <div class="alert alert-danger" role="alert">
-        <% billing_info.errors.full_messages.each do |message| %>
-          <%= message %><br>
-        <% end %>
-      </div>
+    <div class="alert alert-danger" role="alert">
+      <% billing_info.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %>
+    </div>
   <% end %>
   <div class="row">
     <div class="col-md-6 mb-3">

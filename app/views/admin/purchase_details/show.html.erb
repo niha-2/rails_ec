@@ -19,17 +19,17 @@
     <!-- Purchase Detail section-->
     <!-- Section-->
     <section class="py-5">
-    <div class="container">
-      <div class="py-5 text-center">
-        <div>
-          <h2>ご購入明細 #<%= @billing_info.id %></h2>
-          <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details, products: @products}, data: {turbo: false} %>
+      <div class="container">
+        <div class="py-5 text-center">
+          <div>
+            <h2>ご購入明細 #<%= @billing_info.id %></h2>
+            <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details, products: @products}, data: {turbo: false} %>
+          </div>
+        </div>
+        <div class="container text-center">
+          <%= link_to '購入明細一覧', admin_purchase_details_path, class: "btn btn-primary mt-auto" %>
         </div>
       </div>
-      <div class="container text-center">
-        <%= link_to '購入明細一覧', admin_purchase_details_path, class: "btn btn-primary mt-auto" %>
-      </div>
-    </div>
     </section>
     <!-- Footer-->
     <footer class="py-5 bg-dark">

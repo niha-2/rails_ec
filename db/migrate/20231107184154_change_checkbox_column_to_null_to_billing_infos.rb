@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeCheckboxColumnToNullToBillingInfos < ActiveRecord::Migration[7.0]
   def up
     change_column_null :billing_infos, :same_address_flag, true

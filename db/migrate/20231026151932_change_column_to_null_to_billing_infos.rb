@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeColumnToNullToBillingInfos < ActiveRecord::Migration[7.0]
   def up
     change_column_null :billing_infos, :email, true

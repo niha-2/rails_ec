@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateBillingInfos < ActiveRecord::Migration[7.0]
   def change
     create_table :billing_infos do |t|
@@ -15,7 +17,7 @@ class CreateBillingInfos < ActiveRecord::Migration[7.0]
       t.string :payment_method, null: false
       t.string :name_on_card, null: false
       t.string :credit_cart_number, null: false
-      t.string :credit_card_expiration,  null: false
+      t.string :credit_card_expiration, null: false
       t.string :credit_card_cvv, null: false
 
       t.timestamps

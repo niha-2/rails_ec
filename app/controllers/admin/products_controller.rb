@@ -26,8 +26,8 @@ module Admin
 
       ActiveRecord::Base.transaction do
         # アップロードされる画像がない場合は、元の画像をそのまま使う
-        unless @product_update.image.attached?
-          @product_update.image.attach(@product.image.blob) if @product.image.attached?
+        if !@product_update.image.attached? && @product.image.attached?
+          @product_update.image.attach(@product.image.blob)
         end
 
         @product.update!(deleted: true)
@@ -64,6 +64,5 @@ module Admin
     def set_product
       @product = Product.find(params[:id])
     end
-
   end
 end

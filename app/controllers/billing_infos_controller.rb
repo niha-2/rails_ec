@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BillingInfosController < ApplicationController
   before_action :set_cart
   before_action :set_current_cart_products, only: %i[create]
@@ -7,7 +9,8 @@ class BillingInfosController < ApplicationController
 
     if @billing_info.save
       @cart_products.each do |cart_product|
-        @purchase_detail = PurchaseDetail.new(billing_info_id: @billing_info.id, product_id: cart_product.product_id, quantity: cart_product.quantity)
+        @purchase_detail = PurchaseDetail.new(billing_info_id: @billing_info.id, product_id: cart_product.product_id,
+                                              quantity: cart_product.quantity)
         @purchase_detail.save
       end
       session[:cart_id] = nil
@@ -27,7 +30,9 @@ class BillingInfosController < ApplicationController
   private
 
   def billing_info_params
-    params.require(:billing_info).permit(:first_name, :last_name, :user_name, :email, :address, :address2, :country, :state, :zip, :same_address_flag, :save_info_flag, :payment_method, :name_on_card, :credit_card_number, :credit_card_expiration, :credit_card_cvv)
+    params.require(:billing_info).permit(:first_name, :last_name, :user_name, :email, :address, :address2, :country,
+                                         :state, :zip, :same_address_flag, :save_info_flag, :payment_method,
+                                         :name_on_card, :credit_card_number, :credit_card_expiration, :credit_card_cvv)
   end
 
   def set_current_cart_products

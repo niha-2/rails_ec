@@ -1,11 +1,15 @@
-class Admin::PurchaseDetailsController < ApplicationController
-  def index
-    @billing_infos = BillingInfo.all
-  end
+# frozen_string_literal: true
 
-  def show
-    @billing_info = BillingInfo.find(params[:id])
-    @purchase_details = @billing_info.purchase_details
-    @products = Product.all
+module Admin
+  class PurchaseDetailsController < ApplicationController
+    def index
+      @billing_infos = BillingInfo.all
+    end
+
+    def show
+      @billing_info = BillingInfo.find(params[:id])
+      @purchase_details = @billing_info.purchase_details
+      @products = Product.all
+    end
   end
 end

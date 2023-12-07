@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BillingInfo < ApplicationRecord
   has_many :purchase_details, dependent: :destroy
   validates :first_name, presence: true
