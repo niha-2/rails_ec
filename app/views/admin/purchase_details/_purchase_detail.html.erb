@@ -8,8 +8,8 @@
       </tr>
       <% purchase_details.each do |purchase_detail| %>
         <tr>
-          <td><%= products.find { |product| product.id == purchase_detail.product_id}.name %></td>
-          <td><%= products.find { |product| product.id == purchase_detail.product_id}.price %></td>
+          <td><%= purchase_detail.product.name %></td>
+          <td><%= purchase_detail.product.price %></td>
           <td><%= purchase_detail.quantity %></td>
         </tr>
       <% end %>

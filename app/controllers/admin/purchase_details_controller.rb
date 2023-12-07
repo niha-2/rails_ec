@@ -9,7 +9,6 @@ module Admin
     def show
       @billing_info = BillingInfo.find(params[:id])
       @purchase_details = @billing_info.purchase_details
-      @products = Product.all
     end
   end
 end

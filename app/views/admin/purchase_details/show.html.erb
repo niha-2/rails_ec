@@ -23,7 +23,7 @@
         <div class="py-5 text-center">
           <div>
             <h2>ご購入明細 #<%= @billing_info.id %></h2>
-            <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details, products: @products}, data: {turbo: false} %>
+            <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details}, data: {turbo: false} %>
           </div>
         </div>
         <div class="container text-center">
