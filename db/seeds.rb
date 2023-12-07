@@ -24,8 +24,6 @@ product2 = Product.new(
   price: 800,
   deleted: false
 )
-product2.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.png')),
-                      filename: 'no_image.png')
 product2.save!
 
 product3 = Product.new(
@@ -44,8 +42,6 @@ product4 = Product.new(
   price: 1000,
   deleted: false
 )
-product4.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.png')),
-                      filename: 'no_image.png')
 product4.save!
 
 product5 = Product.new(

@@ -25,9 +25,9 @@ module Admin
       @product_update = Product.new(product_params_create)
 
       ActiveRecord::Base.transaction do
-        if @product_update.image.nil?
-          p "image is nil"
-          @product_update.image.attach(@product.image.blob)
+        # アップロードされる画像がない場合は、元の画像をそのまま使う
+        unless @product_update.image.attached?
+          @product_update.image.attach(@product.image.blob) if @product.image.attached?
         end
 
         @product.update!(deleted: true)
