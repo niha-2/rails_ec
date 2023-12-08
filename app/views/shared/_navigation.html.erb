@@ -16,13 +16,6 @@
           </ul>
         </li>
       </ul>
-      <%= form_with url: cart_products_path, method: :get do |f| %>
-        <button class="btn btn-outline-dark" type="submit">
-          <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill"><%= @cart_product_quantity_sum %></span>
-        </button>
-      <% end %>
     </div>
   </div>
 </nav>

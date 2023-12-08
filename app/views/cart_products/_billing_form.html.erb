@@ -1,0 +1,95 @@
+<%= form_with model: billing_info do |p| %>
+  <% if billing_info.errors.present? %>
+    <div class="alert alert-danger" role="alert">
+      <% billing_info.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= p.label :first_name, 'First name' %>
+      <%= p.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= p.label :last_name, 'Last name' %>
+      <%= p.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= p.label :user_name, 'Username' %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">@</span>
+      </div>
+      <%= p.text_field :user_name, class: 'form-control', placeholder: 'Username' %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= p.label :email, 'Email' %><span class="text-muted">(Optional)</span>
+    <%= p.text_field :email, class: 'form-control', placeholder: 'you@example.com' %>
+  </div>
+  <div class="mb-3">
+    <%= p.label :address, 'Address' %>
+    <%= p.text_field :address, class: 'form-control', placeholder: '1234 Main St' %>
+  </div>
+  <div class="mb-3">
+    <%= p.label :addresss2, 'Address 2' %><span class="text-muted">(Optional)</span>
+    <%= p.text_field :address2, class: 'form-control', placeholder: 'Apartment or suite' %>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mb-3">
+      <%= p.label :country, 'Country' %>
+      <%= p.select :country, [['United States', 'United States']], include_blank: 'Choose...', class: 'custom-select d-block w-100' %>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= p.label :state, 'State' %>
+      <%= p.select :state, [['California', 'California']], include_blank: 'Choose...', class: 'custom-select d-block w-100' %>
+    </div>
+    <div class="col-md-3 mb-3">
+      <%= p.label :zip, 'Zip' %>
+      <%= p.text_field :zip, class: 'form-control' %>
+    </div>
+  </div>
+  <hr class="mb-4">
+  <div class="custom-control custom-checkbox">
+    <%= p.check_box :same_address_flag, {class: 'custom-control-input'}, true, false %>
+    <%= p.label :same_address_flag, 'Shipping address is the same as my billing address', class: 'custom-control-label' %>
+  </div>
+  <div class="custom-control custom-checkbox">
+    <%= p.check_box :save_info_flag, {class: 'custom-control-input'}, true, false %>
+    <%= p.label :save_info_flag, 'Save this information for next time', class: 'custom-control-label' %>
+  </div>
+  <hr class="mb-4">
+  <h4 class="mb-3">Payment</h4>
+  <div class="d-block my-3">
+    <div class="custom-control custom-radio">
+      <%= p.radio_button :payment_method, :credit, class: 'custom-control-input' %>
+      <%= p.label :payment_method, "Credit card", class: 'custom-control-label' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= p.label :name_on_card, 'Name on card' %>
+      <%= p.text_field :name_on_card, class: 'form-control' %>
+      <small class="text-muted">Full name as displayed on card</small>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= p.label :credit_card_number, 'Credit card number' %>
+      <%= p.text_field :credit_card_number, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <%= p.label :credit_card_expiration, 'Expiration' %>
+      <%= p.text_field :credit_card_expiration, class: 'form-control' %>
+    </div>
+    <div class="col-md-3 mb-3">
+      <%= p.label :credit_card_cvv, 'CVV' %>
+      <%= p.text_field :credit_card_cvv, class: 'form-control' %>
+    </div>
+  </div>
+  <hr class="mb-4">
+  <%= link_to '商品一覧へ', products_path, class: "btn btn-outline-dark  btn-lg mt-auto" %>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">購入する</button>
+<% end %>

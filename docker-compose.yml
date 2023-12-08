@@ -22,6 +22,9 @@ services:
       - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
       - BASIC_AUTH_USER=$BASIC_AUTH_USER
       - BASIC_AUTH_PASSWORD=$BASIC_AUTH_PASSWORD
+      - LAUNCHY_DRY_RUN=true
+      - BROWSER=/dev/null
+      - SENDER_ADDRESS=$SENDER_ADDRESS
     ports:
       - "3000:3000"
     depends_on:

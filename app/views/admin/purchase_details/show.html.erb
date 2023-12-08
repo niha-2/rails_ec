@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Item - Start Bootstrap Template</title>
+    <title>Shop Homepage - Purchase Details Show</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -16,31 +16,18 @@
   <body>
     <!-- Navigation-->
     <%= render partial: 'shared/navigation' %>
-    <!-- Header-->
-    <header class="bg-dark py-5">
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-          <h1 class="display-4 fw-bolder">商品編集</h1>
-        </div>
-      </div>
-    </header>
-    <!-- Product section-->
+    <!-- Purchase Detail section-->
+    <!-- Section-->
     <section class="py-5">
-      <div class="container text-center">
-        <%= link_to '商品一覧', admin_products_path, class: "btn btn-primary mt-auto" %>
-      </div>
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5">
-          <div class="col">
-            <% if @product.image.attached? %>
-              <%= image_tag @product.image, size: '300x300', class: "card-img-top" %>
-            <% else %>
-              <%= image_tag 'no_image.png', class: "card-img-top", alt: "no-image" %>
-            <% end %>
+      <div class="container">
+        <div class="py-5 text-center">
+          <div>
+            <h2>ご購入明細 #<%= @billing_info.id %></h2>
+            <%= render partial: 'admin/purchase_details/purchase_detail', locals: {purchase_details: @purchase_details}, data: {turbo: false} %>
           </div>
-          <div class="col">
-            <%= render partial: 'form', locals: { product: @product } %>
-          </div>
+        </div>
+        <div class="container text-center">
+          <%= link_to '購入明細一覧', admin_purchase_details_path, class: "btn btn-primary mt-auto" %>
         </div>
       </div>
     </section>

@@ -1,0 +1,18 @@
+<div class="col mb-5">
+  <div class="card h-100">
+    <table class="table">
+      <tr>
+        <th scope="col">商品名</th>
+        <th scope="col">価格</th>
+        <th scope="col">個数</th>
+      </tr>
+      <% purchase_details.each do |purchase_detail| %>
+        <tr>
+          <td><%= purchase_detail.product.name %></td>
+          <td><%= purchase_detail.product.price %></td>
+          <td><%= purchase_detail.quantity %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
