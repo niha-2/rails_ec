@@ -1,3 +1,4 @@
+<h2>ご購入明細 #<%= billing_info.id %></h2>
 <div class="col mb-5">
   <div class="card h-100">
     <table class="table">
@@ -13,6 +14,14 @@
           <td><%= purchase_detail.quantity %></td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan="2">Discount:</td>
+        <td><%= billing_info.discount_amount %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><strong>Total:</strong></td>
+        <td><%= purchase_details.sum { |purchase_detail| purchase_detail.product.price * purchase_detail.quantity } - billing_info.discount_amount %></td>
+      </tr>
     </table>
   </div>
 </div>

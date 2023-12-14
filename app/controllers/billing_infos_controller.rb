@@ -8,6 +8,24 @@ class BillingInfosController < ApplicationController
     @billing_info = BillingInfo.new(billing_info_params)
     @products = Product.all
 
+    # プロモーションコードの割引額を計算
+    @promotion_code_value = params[:promo_code]
+    p @promotion_code_value
+
+    if @promotion_code_value.present?
+      @promotion_code = PromotionCode.find_by(code: @promotion_code_value)
+      if @promotion_code
+        p '割引あり'
+        @billing_info.discount_amount = @promotion_code.discount_amount
+      else
+        @billing_info.discount_amount = 0.to_i
+        p '割引なし1'
+      end
+    else
+      p '割引なし2'
+      @billing_info.discount_amount = 0.to_i
+    end
+
     ActiveRecord::Base.transaction do
       @billing_info.save!
       @cart_products.each do |cart_product|
@@ -16,6 +34,7 @@ class BillingInfosController < ApplicationController
         @purchase_detail.save!
       end
       Cart.find(@current_cart.id).destroy!
+      PromotionCode.find_by(code: @promotion_code_value).destroy! if @promotion_code
     end
     # カートの中身を空にする
     session[:cart_id] = nil

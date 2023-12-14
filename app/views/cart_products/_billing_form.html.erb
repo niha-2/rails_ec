@@ -89,6 +89,9 @@
       <%= p.text_field :credit_card_cvv, class: 'form-control' %>
     </div>
   </div>
+  <div class="input-group">
+      <%= p.text_field :promo_code, class: 'form-control', placeholder: 'Promocode' %>
+  </div>
   <hr class="mb-4">
   <%= link_to '商品一覧へ', products_path, class: "btn btn-outline-dark  btn-lg mt-auto" %>
   <button class="btn btn-primary btn-lg btn-block" type="submit">購入する</button>
