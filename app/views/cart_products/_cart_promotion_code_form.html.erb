@@ -1,0 +1,14 @@
+
+<%= form_with(model: @cart_promotion_code, url: cart_promotion_codes_path, data: { turbo: false } ) do |p| %>
+  <% if flash[:notice].present? %>
+    <div class="notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <div class="input-group p-2">
+    <%= p.text_field :promotion_code, class: 'form-control', placeholder: 'Promo code' %>
+    <div class="input-group-append">
+      <%= p.submit 'Redeem', class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

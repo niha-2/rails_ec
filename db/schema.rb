@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_12_121631) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_21_125921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_121631) do
     t.index ["product_id"], name: "index_cart_products_on_product_id"
   end
 
+  create_table "cart_promotion_codes", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.string "promotion_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_promotion_codes_on_cart_id"
+    t.index ["promotion_code"], name: "index_cart_promotion_codes_on_promotion_code", unique: true
+  end
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_121631) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
+  add_foreign_key "cart_promotion_codes", "carts"
   add_foreign_key "purchase_details", "billing_infos"
   add_foreign_key "purchase_details", "products"
 end

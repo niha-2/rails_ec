@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
   resources :billing_infos, only: %i[create]
+  resources :cart_promotion_codes, only: %i[create]
 
   root to: 'products#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
