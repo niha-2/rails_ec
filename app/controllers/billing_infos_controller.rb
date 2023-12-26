@@ -24,7 +24,8 @@ class BillingInfosController < ApplicationController
       end
       if @cart_promotion_code
         @promotion_code.destroy!
-        @cart_promotion_code.destroy!
+        @cart_promotion_codes = CartPromotionCode.where(cart_id: @current_cart.id)
+        @cart_promotion_codes.destroy_all
       end
       Cart.find(@current_cart.id).destroy!
     end
