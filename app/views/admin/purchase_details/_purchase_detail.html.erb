@@ -16,11 +16,11 @@
       <% end %>
       <tr>
         <td colspan="2">Discount:</td>
-        <td><%= billing_info.discount_amount %></td>
+        <td><%= @discount_amount %></td>
       </tr>
       <tr>
         <td colspan="2"><strong>Total:</strong></td>
-        <td><%= [purchase_details.sum { |purchase_detail| purchase_detail.product.price * purchase_detail.quantity } - billing_info.discount_amount, 0].max %></td>
+        <td><%= @purchase_sum %></td>
       </tr>
     </table>
   </div>

@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <td colspan="2"><strong>Total:</strong></td>
-        <td><%= @cart_products.sum { |cart_product| cart_product.product.price * cart_product.quantity } - @billing_info.discount_amount %></td>
+        <td><%= @purchase_sum %></td>
       </tr>
     </table>
   </body>

@@ -21,7 +21,7 @@ class BillingInfosController < ApplicationController
       Cart.find(@current_cart.id).destroy!
     end
     # カートの中身を空にする
-    create_cart_session
+    clear_cart_session
     # 購入明細メール送信
     send_purchase_details_email if @billing_info.email.present?
 
