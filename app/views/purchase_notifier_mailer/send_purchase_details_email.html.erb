@@ -15,11 +15,19 @@
       </tr>
       <% @cart_products.each do |cart_product| %>
         <tr>
-          <td><%= @products.find { |product| product.id == cart_product.product_id}.name %></td>
-          <td><%= @products.find { |product| product.id == cart_product.product_id}.price %></td>
+          <td><%= cart_product.product.name %></td>
+          <td><%= cart_product.product.price %></td>
           <td><%= cart_product.quantity %></td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan="2">Discount:</td>
+        <td><%= @billing_info.discount_amount %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><strong>Total:</strong></td>
+        <td><%= @purchase_sum %></td>
+      </tr>
     </table>
   </body>
 </html>

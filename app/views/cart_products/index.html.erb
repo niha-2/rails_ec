@@ -27,14 +27,7 @@
               <%= render partial: 'cart_products/cart_product', locals: { product: @products.find { |product| product.id == cart_product.product_id}, cart_product: cart_product } %>
             <% end %>
           </ul>
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
+          <%= render partial: 'cart_products/cart_promotion_code_form', locals: {cart_promotion_code: @cart_promotion_code}, data: { turbo: false } %>
         </div>
         <%# billing %>
         <div class="col-md-8 order-md-1">

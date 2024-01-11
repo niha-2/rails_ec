@@ -1,0 +1,8 @@
+<%= form_with model: CartPromotionCode.new, url: cart_promotion_codes_path do |p| %>
+  <div class="input-group p-2">
+    <%= p.text_field :promotion_code, class: 'form-control', placeholder: 'Promo code' %>
+    <div class="input-group-append">
+      <%= p.submit 'Redeem', class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>
